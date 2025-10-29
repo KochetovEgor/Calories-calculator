@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Еда</title>
+</head>
+<body>
+<a href="/">Назад</a>
+<h2>Список всей еды</h2>
+<table>
+    <tr>
+        <td>Название</td> <td>Базовый вес</td> <td>Калории</td> <td>Белки</td> <td>Жиры</td> <td>Углеводы</td>
+    </tr>
+    {% for f in food %}
+    <tr>
+        <td>{{f[0]}}</td> <td>{{f[1]}}</td> <td>{{f[2]}}</td>
+        <td>{{f[3]}}</td> <td>{{f[4]}}</td> <td>{{f[5]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<form method="post" action="food/add">
+    <h4>Добавить еду</h4>
+    <input type="text" name="name"/>
+    <input type="number" name="base_weight"/>
+    <input type="text" name="calories"/>
+    <input type="text" name="proteins"/>
+    <input type="text" name="fats"/>
+    <input type="text" name="carbohydrates"/>
+    <br/> <br/>
+    <input type="submit" value="Добавить"/>
+</form>
+<p>{{error}}</p>
+</body>
+</html>

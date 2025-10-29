@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<form method="post" action="registration">
+    <p>Введите имя пользователя</p>
+    <input type="text" name="username"/>
+    <p>Введите пароль</p>
+    <input type="password" name="password_1"/>
+    <p>Повторите пароль</p>
+    <input type="password" name="password_2"/>
+    <br/>
+    <br/>
+    <input type="submit" value="Зарегистрироваться"/>
+</form>
+<p>{{error}}</p>
+<a href="login">Назад</a>
+</body>
+</html>
