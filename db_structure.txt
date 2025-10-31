@@ -1,0 +1,63 @@
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    username character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(40) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT users_username_key UNIQUE (username)
+)
+
+
+CREATE TABLE IF NOT EXISTS public.food
+(
+    id integer NOT NULL DEFAULT nextval('food_id_seq1'::regclass),
+    user_id integer,
+    name character varying(50) COLLATE pg_catalog."default",
+    base_weight integer NOT NULL,
+    calories numeric,
+    proteins numeric,
+    fats numeric,
+    carbohydrates numeric,
+    CONSTRAINT food_pkey1 PRIMARY KEY (id),
+    CONSTRAINT food_name_key1 UNIQUE (name),
+    CONSTRAINT food_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+
+CREATE TABLE IF NOT EXISTS public.statistics
+(
+    id integer NOT NULL DEFAULT nextval('user_statistics_id_seq'::regclass),
+    user_id integer,
+    date date NOT NULL,
+    calories numeric,
+    proteins numeric,
+    fats numeric,
+    carbohydrates numeric,
+    CONSTRAINT user_statistics_pkey PRIMARY KEY (id),
+    CONSTRAINT statistics_user_id_date_key UNIQUE (user_id, date),
+    CONSTRAINT user_statistics_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+
+
+CREATE TABLE IF NOT EXISTS public.food_statistics
+(
+    id integer NOT NULL DEFAULT nextval('food_statistics_id_seq'::regclass),
+    food_id integer,
+    statistics_id integer,
+    weight numeric,
+    CONSTRAINT food_statistics_pkey PRIMARY KEY (id),
+    CONSTRAINT food_statistics_food_id_fkey FOREIGN KEY (food_id)
+        REFERENCES public.food (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT food_statistics_statistics_id_fkey FOREIGN KEY (statistics_id)
+        REFERENCES public.statistics (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)

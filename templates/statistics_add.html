@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить в статистику</title>
+</head>
+<body>
+<form method="get" action="/statistics">
+    <input type="submit" value="Назад"/>
+</form>
+<h3>Добавление статистики за день</h3>
+<form method="post" action="/statistics/add">
+    <p>Выберите дату:</p>
+    <input type="date" name="date"/>
+    <br/>
+    <br/>
+    <input type="submit" value="Отправить статистику">
+    <p>{{error}}</p>
+    <p>Список еды</p>
+    <table>
+    <tr>
+        <td>Название</td> <td>Базовый вес</td> <td>Калории</td> <td>Белки</td> <td>Жиры</td>
+        <td>Углеводы</td> <td>Укажите съеденный вес</td>
+    </tr>
+    {% for f in food %}
+    <tr>
+        <td>{{f[1]}}</td> <td>{{f[2]}}</td> <td>{{f[3]}}</td>
+        <td>{{f[4]}}</td> <td>{{f[5]}}</td> <td>{{f[6]}}</td>
+        <td>
+            <input type="text" name="{{f[0]}}"/>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>

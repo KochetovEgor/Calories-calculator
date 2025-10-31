@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика</title>
+</head>
+<body>
+<form method="get" action="/">
+    <input type="submit" value="Назад"/>
+</form>
+<br/>
+<br/>
+<form method="get" action="/statistics/add">
+    <input type="submit" value="Добавить статистику за день"/>
+</form>
+<br/>
+<p>{{msg}}</p>
+<br/>
+<table>
+    <tr>
+        <td>Дата</td> <td>Калории</td> <td>Белки</td> <td>Жиры</td> <td>Углеводы</td>
+    </tr>
+    {% for d in date %}
+    <tr>
+        <td>{{d[0]}}</td> <td>{{d[1]}}</td> <td>{{d[2]}}</td> <td>{{d[3]}}</td> <td>{{d[4]}}</td>
+        <td>
+            <form method="get" action="/statistics/detailed/{{d[0]}}">
+                <input type="submit" value="узнать подробнее"/>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

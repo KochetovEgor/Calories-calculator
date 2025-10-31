@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика за день</title>
+</head>
+<body>
+<form method="get" action="/statistics">
+    <input type="submit" value="Назад"/>
+</form>
+<br/>
+<h3>Дата {{date}}</h3>
+<p>Итог:</p>
+<table>
+    <tr>
+        <td>Калории</td> <td>Белки</td> <td>Жиры</td> <td>Углеводы</td>
+    </tr>
+    <tr>
+        <td>{{sum_food[0]}}</td> <td>{{sum_food[1]}}</td>
+        <td>{{sum_food[2]}}</td> <td>{{sum_food[3]}}</td>
+    </tr>
+</table>
+<br/>
+<p>Рацион:</p>
+<table>
+    <tr>
+        <td>Название</td> <td>Вес</td> <td>Калории</td>
+        <td>Белки</td> <td>Жиры</td> <td>Углеводы</td>
+    </tr>
+    {% for f in food%}
+    <tr>
+        <td>{{f[0]}}</td> <td>{{f[1]}}</td> <td>{{f[2]}}</td>
+        <td>{{f[3]}}</td> <td>{{f[4]}}</td> <td>{{f[5]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br/>
+<br/>
+<form method="post" action="/statistics/detailed/{{date}}/delete">
+    <input type="submit" value="Удалить данные за этот день"/>
+</form>
+</body>
+</html>
