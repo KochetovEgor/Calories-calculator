@@ -10,6 +10,13 @@
 </form>
 <h2>Здравствуйте {{username}}</h2>
 <br/>
-<a href="food">Список всей еды</a>
+<form method="get" action="/statistics">
+    <input type="submit" value="Показать статистику по дням"/>
+</form>
+<br/>
+<br/>
+<form method="get" action="/food">
+    <input type="submit" value="Список всей еды"/>
+</form>
 </body>
 </html>

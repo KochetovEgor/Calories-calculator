@@ -5,7 +5,9 @@
     <title>Еда</title>
 </head>
 <body>
-<a href="/">Назад</a>
+<form method="get" action="/">
+    <input type="submit" value="Назад"/>
+</form>
 <h2>Список всей еды</h2>
 <table>
     <tr>
@@ -18,13 +20,20 @@
     </tr>
     {% endfor %}
 </table>
+<br/>
 <form method="post" action="food/add">
     <h4>Добавить еду</h4>
+    <p>Название</p>
     <input type="text" name="name"/>
+    <p>Базовый вес</p>
     <input type="number" name="base_weight"/>
+    <p>Калории</p>
     <input type="text" name="calories"/>
+    <p>Белки</p>
     <input type="text" name="proteins"/>
+    <p>Жиры</p>
     <input type="text" name="fats"/>
+    <p>Углеводы</p>
     <input type="text" name="carbohydrates"/>
     <br/> <br/>
     <input type="submit" value="Добавить"/>
